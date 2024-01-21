@@ -1,0 +1,24 @@
+version: '2'
+services:
+  wekan:
+    image: mquandalle/wekan
+    # platform: linux/amd64
+    links: 
+      - wekandb
+    environment:
+      - MONGO_URL=mongodb://wekandb/wekan
+      - ROOT_URL=http://localhost:3333
+    ports:
+      - 3333:8080 #wekan_8080
+    # restart: always 
+
+
+  wekandb:
+    image: mongo:4.1.5
+    # platform: linux/amd64
+    volumes:
+      - wecan_db:/data/db
+    # restart: always
+
+volumes:
+  wecan_db:
